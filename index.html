@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stracker</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/spinkit@2.0.1/spinkit.min.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar" aria-label="Main Navigation"> <!-- Removed bg-light class -->
+      <a class="navbar-brand" href="#">Stracker</a>
+      <div class="ml-auto">
+        <a href="#" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#settingsModal">Settings</a>
+        <a href="view-comments.html" class="btn btn-sm btn-outline-secondary">View Comments</a>
+      </div>
+    </nav>
+  </header>
+  <main class="container">
+    <!-- Today Summary Section -->
+    <section class="row justify-content-center">
+      <div class="col-md-8">
+        <h5 class="text-center">Today Summary</h5>
+        <div class="card mb-3">
+          <div class="card-body text-center">
+            <p id="today-commented-time" class="text-info"></p>
+            <p id="balance-time" class="text-warning"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- NEW: Fun Fact Section -->
+    <section class="row">
+      <div class="col-md-12">
+        <div id="fun-fact" class="fun-fact text-center mb-3">
+          <!-- Fun fact will be inserted here -->
+        </div>
+      </div>
+    </section>
+    <!-- Task Form and Task List Row -->
+    <section class="row">
+      <div class="col-md-4">
+        <h5>Create/Update Task</h5> <!-- Updated title -->
+        <div class="card">
+          <div class="card-body">
+            <form id="task-form">
+              <div class="form-group">
+                <label for="task-select">Task Name</label>
+                <input list="task-options" class="form-control form-control-sm" id="task-select" placeholder="Select or type task name">
+                <datalist id="task-options"></datalist>
+              </div>
+              <div id="new-task-details">
+                <div class="form-group">
+                  <label for="task-id">Task ID</label>
+                  <input type="text" class="form-control form-control-sm" id="task-id" placeholder="Task ID" required>
+                </div>
+                <div class="form-group">
+                  <label for="task-desc">Description</label>
+                  <textarea class="form-control form-control-sm" id="task-desc" placeholder="Description" rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="start-date">Start Date</label>
+                  <input type="date" class="form-control form-control-sm" id="start-date" required>
+                </div>
+                <div class="form-group">
+                  <label for="estimation">Estimation (HH:MM)</label>
+                  <input type="text" class="form-control form-control-sm" id="estimation" placeholder="HH:MM" pattern="^([01]\d|2[0-3]):([0-5]\d)$" required>
+                </div>
+                <div class="form-group">
+                  <label for="status">Status</label>
+                  <select class="form-control form-control-sm" id="status">
+                    <option value="Yet-to-start">Yet-to-start</option>
+                    <option value="In-Progress">In-Progress</option>
+                    <option value="Hold">Hold</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Closed">Closed</option>
+                  </select>
+                </div>
+              </div>
+              <div id="existing-task-details" style="display: none;">
+                <div class="form-group">
+                  <label for="spent-hours">Spent Hours (HH:MM)</label>
+                  <input type="text" class="form-control form-control-sm" id="spent-hours" placeholder="HH:MM" pattern="^([01]\d|2[0-3]):([0-5]\d)$" required>
+                </div>
+                <div class="form-group">
+                  <label for="extra-comment">Additional Comment</label>
+                  <textarea class="form-control form-control-sm" id="extra-comment" placeholder="Additional Comment" rows="2" minlength="5" required></textarea>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-sm btn-success btn-block">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <h5>Tasks Overview</h5> <!-- Updated title -->
+        <div class="card">
+          <div class="card-body">
+            <ul id="task-list" class="list-unstyled"></ul>
+          </div>
+        </div>
+        <div id="page-task-details" class="mt-2"></div>
+      </div>
+    </section>
+  </main>
+  <!-- Settings Modal -->
+  <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="settingsModalLabel">Settings</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="theme-select">Select Theme:</label>
+            <select class="form-control form-control-sm" id="theme-select">
+              <option value="default">Default (Light)</option>
+              <option value="dark">Dark</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="renderer.js"></script>
+  <canvas id="confetti-canvas" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <!-- Removed inline script and added module entry point -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

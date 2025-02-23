@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stracker</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <div class="container-fluid p-0">
+    <nav class="navbar" aria-label="Main Navigation"> <!-- Removed bg-light class -->
+      <a href="index.html" class="navbar-brand">Stracker</a>
+      <div class="ml-auto">
+        <a href="index.html" class="btn btn-sm btn-outline-secondary">Home</a>
+        <a href="#" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#settingsModal">Settings</a>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3 sidebar">
+          <h5>Filters</h5>
+          <form id="filter-form">
+            <div class="form-group">
+              <label for="filter-keyword">Name</label>
+              <input type="text" class="form-control form-control-sm" id="filter-keyword" placeholder="Filter by name">
+            </div>
+            <div class="form-group">
+              <label for="filter-status">Status</label>
+              <select class="form-control form-control-sm" id="filter-status">
+                <option value="">All Statuses</option>
+                <option value="Yet-to-start">Yet-to-start</option>
+                <option value="In-Progress">In-Progress</option>
+                <option value="Hold">Hold</option>
+                <option value="Completed">Completed</option>
+                <option value="Closed">Closed</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="sort-option">Sort By</label>
+              <select class="form-control form-control-sm" id="sort-option">
+                <option value="name-asc">Name Ascending</option>
+                <option value="name-desc">Name Descending</option>
+                <option value="startDate-asc">Start Date Ascending</option>
+                <option value="startDate-desc">Start Date Descending</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="filter-comment-date">Comment Date</label>
+              <input type="date" class="form-control form-control-sm" id="filter-comment-date" placeholder="Comment Date">
+            </div>
+            <div class="form-group">
+              <label for="filter-start-date">Start Date</label>
+              <input type="date" class="form-control form-control-sm" id="filter-start-date">
+            </div>
+            <div class="form-group">
+              <label for="filter-end-date">End Date</label>
+              <input type="date" class="form-control form-control-sm" id="filter-end-date">
+            </div>
+          </form>
+        </div>
+        <div class="col-md-9 content">
+          <h5 class="mt-2 mb-3">Tasks with Comments</h5>
+          <div id="comments-container">
+            <table class="table table-sm table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>Task ID</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Start Date</th>
+                  <th>Estimation</th>
+                  <th>Status</th>
+                  <th>Comments</th>
+                </tr>
+              </thead>
+              <tbody id="tasks-table-body">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="settingsModalLabel">Settings</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="theme-select">Select Theme:</label>
+            <select class="form-control form-control-sm" id="theme-select">
+              <option value="default">Default (Light)</option>
+              <option value="dark">Dark</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="view-comments.js"></script>
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeSelect = document.getElementById('theme-select');
+
+      themeSelect.addEventListener('change', () => {
+        const selectedTheme = themeSelect.value;
+        document.body.className = selectedTheme === 'default' ? '' : `${selectedTheme}-theme`;
+        localStorage.setItem('theme', selectedTheme);
+      });
+
+      const storedTheme = localStorage.getItem('theme') || 'default';
+      themeSelect.value = storedTheme;
+      document.body.className = storedTheme === 'default' ? '' : `${storedTheme}-theme`;
+    });
+  </script>
+</body>
+</html>

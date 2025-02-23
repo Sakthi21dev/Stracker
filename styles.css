@@ -1,0 +1,548 @@
+/* Theme Variables */
+:root {
+  /* Updated Default (Light) Theme for data exploring */
+  --bg-color: #ffffff;
+  --text-color: #222;
+  --header-color: #1f78b4; /* accent blue */
+  --btn-bg: #e7f3ff;
+  --btn-bg-hover: #c1e0ff;
+  --card-bg: #ffffff;
+  --card-border: #d0d0d0;
+  --navbar-bg: #f5f5f5;
+  --navbar-text: #333;
+  --navbar-text-hover: #1f78b4;
+  --sleek-container-bg: #fafafa;
+}
+
+/* Dark Theme Overrides */
+body.dark-theme {
+  --bg-color: #1a1a1a;
+  --text-color: #e0e0e0;
+  --header-color: #fff;
+  --btn-bg: #2d2d2d;
+  --btn-bg-hover: #404040;
+  --card-bg: #2d2d2d;
+  --card-border: #404040;
+  --navbar-bg: #2d2d2d;
+  --navbar-text: #e0e0e0;
+  --navbar-text-hover: #4dc4ff;
+  --sleek-container-bg: rgba(45, 45, 45, 0.95);
+}
+
+/* Base Styles Using Theme Variables */
+body {
+  background: var(--bg-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: var(--text-color);
+  padding: 0;
+  margin: 0;
+  transition: background 0.3s, color 0.3s; /* Smooth transition */
+}
+
+/* Professional Header */
+h1 {
+  text-align: center;
+  color: var(--header-color);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Button Styling (Flat Windows style) */
+button, .btn {
+  background-color: var(--btn-bg);
+  border: 1px solid var(--card-border);
+  color: var(--header-color);
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 0;
+  box-shadow: none !important;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* added transform transition */
+}
+button:hover, .btn:hover {
+  background-color: var(--btn-bg-hover);
+  transform: translateY(-2px); /* subtle elevation on hover */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Button color overrides */
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+  color: #fff;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: #000;
+  border-color: #ffc107;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #d39e00;
+  color: #000;
+}
+
+/* Dark theme button overrides */
+body.dark-theme .btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+  border-color: #dc3545;
+}
+
+body.dark-theme .btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+  color: #fff;
+}
+
+body.dark-theme .btn-warning {
+  background-color: #ffc107;
+  color: #000;
+  border-color: #ffc107;
+}
+
+body.dark-theme .btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #d39e00;
+  color: #000;
+}
+
+/* Ensure icon visibility */
+.btn i {
+  margin-right: 5px;
+}
+
+/* Compact buttons */
+.btn-sm {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0;
+}
+
+/* Icon-only button styles */
+.btn-icon {
+  padding: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+}
+
+.btn-icon.btn-sm {
+  padding: 0.25rem;
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.875rem;
+}
+
+.btn-icon i {
+  margin: 0;
+}
+
+/* List Styling */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  cursor: pointer;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease; /* added transition for hover */
+}
+li:hover {
+  background-color: #f0f8ff; /* subtle highlight on hover */
+}
+
+body.dark-theme li:hover {
+  background-color: #3a3a3a; /* Dark theme hover color */
+}
+
+/* Modal Content Customization */
+.modal-content {
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  color: var(--text-color);
+  background: var(--card-bg);
+}
+
+/* Professional Card Styling */
+.card {
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;  /* added scale transition */
+  background-color: var(--card-bg); /* Card background */
+  color: var(--text-color); /* Card text color */
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* Refined Input Styles */
+.form-control {
+  border-radius: 0;
+  box-shadow: none !important;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease;
+  color: var(--text-color);
+  background-color: var(--card-bg);
+}
+.form-control:focus {
+  border-color: #80bdff;
+  outline: 0; /* Remove default focus outline */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Subtle focus shadow */
+}
+
+/* Updated Navbar Styling */
+.navbar {
+  background-color: var(--navbar-bg);
+  color: var(--text-color);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0;
+  border-bottom: 2px solid var(--card-border);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--header-color) !important;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.navbar-brand:hover {
+  transform: translateY(-1px);
+}
+
+.navbar .btn-outline-secondary {
+  border-color: var(--card-border);
+  color: var(--text-color);
+  margin-left: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.navbar .btn-outline-secondary:hover {
+  background-color: var(--btn-bg-hover);
+  color: var(--navbar-text-hover);
+  transform: translateY(-1px);
+}
+
+/* Dark theme specific navbar adjustments */
+body.dark-theme .navbar {
+  background-color: var(--navbar-bg);
+  border-bottom-color: var(--card-border);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-theme .navbar-brand {
+  color: var(--text-color) !important;
+}
+
+.navbar a {
+  color: var(--navbar-text);
+  text-decoration: none;
+  margin-right: 1rem;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: var(--navbar-text-hover); /* Highlight color */
+}
+
+/* Sleek Container */
+.sleek-container {
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  color: var(--text-color);
+}
+
+/* New: Responsive Layout Adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  button, .btn {
+    width: 100%;
+    margin-bottom: 0.75rem;
+  }
+  .card {
+    margin-bottom: 1.5rem;
+  }
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .form-group {
+    margin-bottom: 0.75rem;
+    width: 100%;
+  }
+  .form-group label {
+    display: block;
+  }
+}
+
+/* Table styles */
+.table-sm td, .table-sm th {
+  padding: 0.5rem; /* Increased padding for better readability */
+  font-size: 0.9rem; /* Slightly larger font size */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.03); /* Softer striping */
+}
+
+.table-bordered {
+  border: 2px solid var(--card-border); /* Standard border color */
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid var(--card-border);
+  padding: 0.75rem;
+  vertical-align: middle;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
+.table-striped tbody tr:hover {
+  background-color: #e8f4ff;
+}
+
+/* Form adjustments */
+.form-inline .form-group {
+  margin-bottom: 0.3rem;
+}
+
+/* Custom styles for sidebar and content */
+.sidebar {
+  background-color: var(--card-bg); /* Consistent with card background */
+  border-right: 1px solid var(--card-border);
+  padding: 15px; /* Increased padding */
+  width: 260px; /* Slightly wider sidebar */
+  flex-shrink: 0;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+}
+
+.content {
+  padding: 20px;
+  background-color: var(--bg-color); /* Consistent with body background */
+}
+
+/* New: Fade-in animation for table rows */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Dark Theme Specific Overrides */
+body.dark-theme .table {
+  color: var(--text-color);
+}
+
+body.dark-theme .table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-theme .table-bordered {
+  border-color: var(--card-border);
+}
+
+body.dark-theme .table-bordered th,
+body.dark-theme .table-bordered td {
+  border-color: var(--card-border);
+}
+
+body.dark-theme .btn-outline-secondary {
+  color: var(--text-color);
+  border-color: var(--card-border);
+}
+
+body.dark-theme .btn-outline-secondary:hover {
+  background-color: var(--btn-bg-hover);
+  color: var(--text-color); /* Changed to text-color */
+}
+
+body.dark-theme .form-control {
+  background-color: #333;
+  border-color: var(--card-border);
+  color: var(--text-color);
+}
+
+body.dark-theme .form-control:focus {
+  background-color: #404040;
+  border-color: #4dc4ff;
+  color: var(--text-color);
+}
+
+body.dark-theme .modal-content {
+  background-color: var(--card-bg);
+  border-color: var(--card-border);
+}
+
+body.dark-theme .close {
+  color: var(--text-color);
+  text-shadow: none;
+}
+
+body.dark-theme .close:hover {
+  color: #fff;
+}
+
+body.dark-theme ::placeholder {
+  color: #888 !important;
+}
+
+textarea {
+  resize: none;
+}
+
+/* Comment styles */
+.list-group-item {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-color: var(--card-border);
+}
+
+.list-group-item em {
+  color: #6c757d;  /* Default light theme */
+  font-size: 0.9em;
+}
+
+body.dark-theme .list-group-item {
+  background-color: #2d2d2d;
+  border-color: #404040;
+}
+
+body.dark-theme .list-group-item em {
+  color: #9ea7b3;  /* Lighter gray for dark theme */
+}
+
+/* Ensure buttons in comments have proper spacing */
+.list-group-item .btn {
+  margin-left: 8px;
+}
+
+/* Ensure proper spacing between action buttons in comments */
+.list-group-item .btn-icon {
+  margin-left: 0.5rem;
+}
+
+/* Fun Animations */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Task Status Indicators */
+.status-indicator {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+}
+
+.status-Yet-to-start { background: #ffd700; color: #000; }
+.status-In-Progress { background: #87ceeb; color: #000; }
+.status-Hold { background: #ff8c00; color: #fff; }
+.status-Completed { background: #90ee90; color: #000; }
+.status-Closed { background: #a9a9a9; color: #fff; }
+
+/* Loading Spinner */
+.sk-chase {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    animation: bounce 2s infinite;
+    margin: 20px auto;
+}
+
+/* Toast Notification */
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    animation: slideIn 0.5s ease;
+    z-index: 1000;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-color);
+}
+
+.empty-state i {
+    font-size: 48px;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+/* NEW: Fun Fact Styling */
+.fun-fact {
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    animation: fadeInUp 1s ease;
+    margin-bottom: 20px;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
